@@ -6,6 +6,7 @@ import numpy as np
 import tensorflow as tf
 from pathlib import Path
 
+
 class ValidationCallback(tf.keras.callbacks.Callback):
     
     def __init__(self, val_data):

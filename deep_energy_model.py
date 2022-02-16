@@ -1,6 +1,7 @@
 import numpy as np
 from tcn import TCN
 import tensorflow as tf
+
 import os
 
 def load_inputs(lookback=20,
@@ -43,10 +44,7 @@ def load_inputs(lookback=20,
     return inputs
 
 
-def create_advanced_net(input_size,
-                        net_type='lstm',
-                        input_type='concat',
-                        **kwargs):
+def create_advanced_net(input_size, net_type='lstm', input_type='concat', **kwargs):
 
     # net_type is in one of the following
     assert net_type in ['lstm', 'gru', 'tcn']
@@ -137,8 +135,7 @@ def create_advanced_net(input_size,
     if net_type == 'tcn':
 
         # adding the first layer
-        time_features = TCN(return_sequences=return_sequences,
-                            **tcn_input)(time_input)
+        time_features = TCN(return_sequences=return_sequences, **tcn_input)(time_input)
 
         # adding the remaining layers
         for _ in range(1, kwargs['n_hidden'] - 1):
